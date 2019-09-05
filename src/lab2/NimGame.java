@@ -14,6 +14,7 @@ public class NimGame {
         int roundCounter = 0;
 
 
+        
         //while loop//
         while (numSticks > 0) {
             //Getting the computer to pick 1 or 2//
