@@ -71,7 +71,7 @@ public class NimGame {
 
 
                 //Computer picking first//
-                if (rCompPick <= numSticks) {
+                if (rCompPick <= numSticks && numSticks != 0) {
                     System.out.print("Round " + roundCounter + ", " + numSticks + " sticks at start, computer took " + rCompPick + ", so ");
                     numSticks = numSticks - rCompPick;
                     System.out.print(numSticks + " remain");
@@ -83,7 +83,7 @@ public class NimGame {
                     int humTake = ap.nextInt("How many sticks would you like to take");
 
                     //Making sure human does not cheat//
-                    while (humTake > 2 || humTake == 0) {
+                    while (humTake > 2 || humTake <= 0) {
                         humTake = ap.nextInt("Stop Cheating!!! Take either 1 or 2 sticks. How many Sticks would you like to take?");
                     }
 
@@ -97,14 +97,17 @@ public class NimGame {
                         }
 
                         //if the human chooses greater than what remains//
-                        if (humTake > numSticks && numSticks != 0) {
+                        while (humTake > numSticks && numSticks != 0) {
                             humTake = ap.nextInt("You cannot enter a value greater than the number of sticks remaining. Please input a proper value!!!");
-                            numSticks = numSticks - humTake;
-                            System.out.print("Round " + roundCounter + ", " + numSticks + " sticks at start, human took " + humTake + ", so ");
-                            System.out.print(numSticks + " remain");
-                            System.out.println();
-                            roundCounter = roundCounter + 1;
+                            if (humTake <= numSticks) {
+                                numSticks = numSticks - humTake;
+                                System.out.print("Round " + roundCounter + ", " + numSticks + " sticks at start, human took " + humTake + ", so ");
+                                System.out.print(numSticks + " remain");
+                                System.out.println();
+                                roundCounter = roundCounter + 1;
+                            }
                         }
+
 
 
                 }
